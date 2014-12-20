@@ -220,13 +220,13 @@ class AbuseLogReader(object):
             'aflprop': 'ids|user|title|action|result|filter'
         }
         request = api.APIRequest(self.wiki, query_params)
-### XXX
+
         try:
             result = request.query(querycontinue=False)
         except api.APIError as e:
-            self.log.debug('aflblocked: %s -> isLoggedIn(%s): %s', e, self.username, self.wiki.isLoggedIn(self.username))
+            self.log.debug('Caught APIError in fetch_log: %s, isLoggedIn(%s)=%s', e, self.username, self.wiki.isLoggedIn(self.username))
             return
-### XXX
+
         items = result['query']['abuselog']
         items.reverse()
         if self.last_log_id:
