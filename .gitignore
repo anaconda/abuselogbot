@@ -1,0 +1,5 @@
+*.pyc
+/bots.conf
+
+# screen's log (screen -L)
+/screenlog.*

@@ -1,0 +1,41 @@
+[DEFAULT]
+### Most users don't want to change the following settings.
+autofailover: yes
+master: 
+# IRC real name
+real_name: pyAbuseLoggerBot %(__version__)s
+slave: no
+start: yes
+
+### Your settings go here.
+# IRC
+host: chat.freenode.net
+port: 6697
+ssl: yes
+# Server password - freenode forwards it to NickServ.  This setting is optional.
+password: 
+
+# MediaWiki
+wiki_user: 
+wiki_password: 
+
+# "Administrators" can start and stop slaves, reload the configuration, etc.
+admin_hosts: unaffiliated/vito unaffiliated/anaconda wikimedia/Melos
+
+[ALBot]
+# A wiki can be associated with more than one channel.
+wikis_channels:
+    klingon.wikipedia.org: #worf #highcouncil
+    l33t.wiktionary.org: #ch4nn31
+# Ignored filters are space-separated.
+ignored_filters:
+    l33t.wiktionary.org: 1 42
+# Parameters: user, filter_id, action, page, result, filter_description, id, wiki_address
+formats:
+    default: User {user} triggered filter {filter_id} ("{filter_description}") with the action "{action}" on [[{page}]]; actions: {result}. Diff: https://{wiki_address}/wiki/Special:AbuseLog/{id}
+    l33t.wiktionary.org: |_|s3r {user} 7r1993r3d f1l73r {filter_id} ("{filter_description}") w17h 7h3 4c710n "{action}" on [[{page}]]; 4c710nz: {result}. D1ff: https://{wiki_address}/wiki/Special:AbuseLog/{id}
+
+[ALBot2]
+# Slaves read 'wikis_channels', 'ignored_filters' and 'formats' from master's section.  You can set it here, but it'll be ignored.
+slave: yes
+master: ALBot
